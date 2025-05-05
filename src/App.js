@@ -11,7 +11,44 @@ const flashcards = [
   { question: "What type of selection favors extreme phenotypes?", answer: "Disruptive selection" },
   { question: "Which molecule carries amino acids to the ribosome during translation?", answer: "tRNA" },
   { question: "Which of the following is a characteristic of a prokaryotic cell?", answer: "Circular DNA" },
-  { question: "What is the function of DNA polymerase?", answer: "Synthesizing new DNA strands from a template strand" }
+  { question: "What is the function of DNA polymerase?", answer: "Synthesizing new DNA strands from a template strand" },
+  { question: "Which macromolecule contains C, H, O, N, and sometimes S?", answer: "Proteins" },
+  { question: "What is the role of water in photosynthesis?", answer: "Water donates electrons to the light reactions" },
+  { question: "Which structure regulates what enters and exits the nucleus?", answer: "Nuclear pore" },
+  { question: "The sodium-potassium pump is an example of:", answer: "Active transport" },
+  { question: "Which organelle contains hydrolytic enzymes for intracellular digestion?", answer: "Lysosome" },
+  { question: "What type of bond links amino acids together in a protein?", answer: "Peptide bond" },
+  { question: "Which stage of cellular respiration produces the most ATP?", answer: "Electron transport chain" },
+  { question: "During transcription, what is produced?", answer: "mRNA" },
+  { question: "Which of the following increases genetic variation during meiosis?", answer: "Crossing over" },
+  { question: "What is the role of the spindle fibers during mitosis?", answer: "Separate sister chromatids" },
+  { question: "Which molecule is used for energy transfer in cells?", answer: "ATP" },
+  { question: "What describes the movement of water across a semipermeable membrane?", answer: "Osmosis" },
+  { question: "What is the function of the Golgi apparatus?", answer: "Modifies, sorts, and packages proteins" },
+  { question: "Which structure in plant cells captures light energy?", answer: "Chloroplast" },
+  { question: "What is the process of programmed cell death called?", answer: "Apoptosis" },
+  { question: "Which macromolecule serves as genetic material?", answer: "Nucleic acids (DNA/RNA)" },
+  { question: "What is the main purpose of cellular respiration?", answer: "To produce ATP" },
+  { question: "Which kingdom includes multicellular, photosynthetic organisms?", answer: "Plantae" },
+  { question: "What is the smallest unit of life?", answer: "Cell" },
+  { question: "What term describes an organism’s ability to maintain stable internal conditions?", answer: "Homeostasis" },
+  { question: "Which phase of meiosis results in haploid cells?", answer: "Meiosis II" },
+  { question: "What is the function of mRNA?", answer: "To carry genetic code from DNA to ribosomes" },
+  { question: "What do enzymes do?", answer: "Speed up chemical reactions" },
+  { question: "What structure forms the outer boundary of animal cells?", answer: "Cell membrane" },
+  { question: "Which organelle is responsible for producing ATP?", answer: "Mitochondrion" },
+  { question: "What organelle is found only in plant cells and provides structure?", answer: "Cell wall" },
+  { question: "What is the name for the jellylike fluid inside the cell?", answer: "Cytoplasm" },
+  { question: "What is the basic building block of proteins?", answer: "Amino acids" },
+  { question: "What happens in the G1 phase of the cell cycle?", answer: "Cell growth" },
+  { question: "What is the purpose of the S phase in interphase?", answer: "DNA replication" },
+  { question: "What part of the brain controls involuntary actions?", answer: "Medulla oblongata" },
+  { question: "What part of the nervous system controls voluntary movement?", answer: "Somatic nervous system" },
+  { question: "What type of feedback loop increases the original stimulus?", answer: "Positive feedback" },
+  { question: "Which system is responsible for transporting nutrients and waste?", answer: "Circulatory system" },
+  { question: "What structure allows gas exchange in leaves?", answer: "Stomata" },
+  { question: "What is the term for a trait that masks another trait?", answer: "Dominant" },
+  { question: "What is the function of chlorophyll?", answer: "Absorbs light energy for photosynthesis" }
 ];
 
 function shuffleArray(array) {
@@ -86,7 +123,7 @@ export default function FlashcardApp() {
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         <button onClick={markKnown}>Known</button>
         <button onClick={markNeedsReview}>Needs Review</button>
-        <button onClick={nextCard}>Skip</button>
+        <button onClick={nextCard}>Next</button>
         <button onClick={toggleReviewMode}>
           {reviewMode ? "Exit Review Mode" : "Review Needs Review"}
         </button>

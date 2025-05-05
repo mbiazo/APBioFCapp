@@ -2,26 +2,16 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const flashcards = [
-  {
-    question: "What is the primary function of the mitochondria in eukaryotic cells?",
-    answer: "Energy production"
-  },
-  {
-    question: "Which phase of mitosis involves the alignment of chromosomes along the center of the cell?",
-    answer: "Metaphase"
-  },
-  {
-    question: "Which molecule carries amino acids to the ribosome during translation?",
-    answer: "tRNA"
-  },
-  {
-    question: "Which organelle contains hydrolytic enzymes for intracellular digestion?",
-    answer: "Lysosome"
-  },
-  {
-    question: "Which process converts glucose into pyruvate?",
-    answer: "Glycolysis"
-  }
+  { question: "What is the primary function of the mitochondria in eukaryotic cells?", answer: "Energy production" },
+  { question: "Which phase of mitosis involves the alignment of chromosomes along the center of the cell?", answer: "Metaphase" },
+  { question: "In a dihybrid cross, which genotype is homozygous recessive for both traits?", answer: "aabb" },
+  { question: "In a DNA molecule, which nitrogenous base pairs with adenine?", answer: "Thymine" },
+  { question: "What is the primary role of ribosomes in a cell?", answer: "Protein synthesis" },
+  { question: "Which of the following processes is part of the light-dependent reactions of photosynthesis?", answer: "ATP synthesis" },
+  { question: "What type of selection favors extreme phenotypes?", answer: "Disruptive selection" },
+  { question: "Which molecule carries amino acids to the ribosome during translation?", answer: "tRNA" },
+  { question: "Which of the following is a characteristic of a prokaryotic cell?", answer: "Circular DNA" },
+  { question: "What is the function of DNA polymerase?", answer: "Synthesizing new DNA strands from a template strand" }
 ];
 
 function shuffleArray(array) {
@@ -39,20 +29,29 @@ export default function FlashcardApp() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [known, setKnown] = useState([]);
   const [needsReview, setNeedsReview] = useState([]);
+  const [reviewMode, setReviewMode] = useState(false);
+
+  const currentDeck = reviewMode ? needsReview : deck;
 
   const nextCard = () => {
     setShowAnswer(false);
-    setIndex((prev) => (prev + 1) % deck.length);
+    setIndex((prev) => (prev + 1) % currentDeck.length);
   };
 
   const markKnown = () => {
-    setKnown([...known, deck[index]]);
+    setKnown([...known, currentDeck[index]]);
     nextCard();
   };
 
   const markNeedsReview = () => {
-    setNeedsReview([...needsReview, deck[index]]);
+    setNeedsReview([...needsReview, currentDeck[index]]);
     nextCard();
+  };
+
+  const toggleReviewMode = () => {
+    setShowAnswer(false);
+    setIndex(0);
+    setReviewMode(!reviewMode);
   };
 
   return (
@@ -80,14 +79,17 @@ export default function FlashcardApp() {
             }}
             onClick={() => setShowAnswer(!showAnswer)}
           >
-            {showAnswer ? deck[index].answer : deck[index].question}
+            {showAnswer ? currentDeck[index]?.answer : currentDeck[index]?.question || "No cards"}
           </div>
         </motion.div>
       </AnimatePresence>
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         <button onClick={markKnown}>Known</button>
         <button onClick={markNeedsReview}>Needs Review</button>
         <button onClick={nextCard}>Skip</button>
+        <button onClick={toggleReviewMode}>
+          {reviewMode ? "Exit Review Mode" : "Review Needs Review"}
+        </button>
       </div>
     </div>
   );
